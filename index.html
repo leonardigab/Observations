@@ -1,49 +1,204 @@
-```html
 <!DOCTYPE html>
-<html style>
+<html lang="it">
 <head>
-  <meta charset="utf-8">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Poor Charlie’s Almanack: The Essential Wit and Wisdom of Charles T. Munger</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <meta property="og:title" content="Poor Charlie’s Almanack: The Essential Wit and Wisdom of Charles T. Munger">
-  <meta property="og:description" content="Experience the wit and wisdom of Charles T. Munger online, for free. Originally published in 2005, this compilation of 11 talks by the legendary Berkshire Hathaway vice‑chairman has become a touchstone for a generation of investors and entrepreneurs. It is an essential volume for any reader seeking to go to bed a little wiser than when they woke up.">
-  <meta property="og:image" name="og:image" content="https://images.ctfassets.net/fzn2n1nzq965/60jqxiSni0VRrzKrVirQ5s/4024e79fc2c2b205ca0e97317f2b1b85/pca_social_card_2x.jpg">
-  <meta name="image" property="og:image" content="https://images.ctfassets.net/fzn2n1nzq965/60jqxiSni0VRrzKrVirQ5s/4024e79fc2c2b205ca0e97317f2b1b85/pca_social_card_2x.jpg">
-  <meta name="description" property="og:description" content="Experience the wit and wisdom of Charles T. Munger online, for free. Originally published in 2005, this compilation of 11 talks by the legendary Berkshire Hathaway vice‑chairman has become a touchstone for a generation of investors and entrepreneurs. It is an essential volume for any reader seeking to go to bed a little wiser than when they woke up.">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@stripepress">
-  <meta name="twitter:creator" content="@stripepress">
-  <meta name="twitter:title" content="Poor Charlie’s Almanack: The Essential Wit and Wisdom of Charles T. Munger">
-  <meta name="twitter:description" content="Experience the wit and wisdom of Charles T. Munger online, for free. Originally published in 2005, this compilation of 11 talks by the legendary Berkshire Hathaway vice‑chairman has become a touchstone for a generation of investors and entrepreneurs. It is an essential volume for any reader seeking to go to bed a little wiser than when they woke up.">
-  <meta name="twitter:image" content="https://images.ctfassets.net/fzn2n1nzq965/60jqxiSni0VRrzKrVirQ5s/4024e79fc2c2b205ca0e97317f2b1b85/pca_social_card_2x.jpg">
-  <link rel="shortcut icon" href="/images/favicon.ico">
-  <link rel="preload" href="/fonts/cardinalfruitweb-medium.woff2" as="font" type="font/woff" crossorigin>
-  <link rel="preload" href="/fonts/cardinalfruitweb-regular.woff2" as="font" type="font/woff" crossorigin>
-  <link rel="preload" href="/fonts/cardinalfruitweb-italic.woff2" as="font" type="font/woff" crossorigin>
-  <script src="/_next/static/jYffJ8kB4uRo0FygbPdqH/_buildManifest.js" defer crossorigin></script>
-  <script src="/_next/static/jYffJ8kB4uRo0FygbPdqH/_ssgManifest.js" defer crossorigin></script>
-  <style data-styled="active" data-styled-version="5.3.11"></style>
-  <link as="script" rel="prefetch" href="/_next/static/chunks/pages/poor-charlies-almanack/book-2680141ca83280fa.js">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample Article - Observations by Gabriele Leonardi</title>
+  <!-- Vintage fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700&family=Cormorant+Garamond:ital,wght@0,400;0,700&display=swap" rel="stylesheet">
+  <style>
+    /* Root variables and texture */
+    :root {
+      --accent-color: #6f1826;
+      --paper-bg: #f0dfcc;
+    }
+    body {
+      background: var(--paper-bg);
+      background-image: radial-gradient(circle at 20px 20px, rgba(0,0,0,0.08) 4px, transparent 0);
+      background-size: 80px 80px;
+      margin: 0;
+      padding: 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      color: #111;
+      overflow-x: hidden;
+    }
+    /* Reading progress bar */
+    #progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 10px; background: rgba(0,0,0,0.3); z-index:1000; }
+    #reading-progress { height: 10px; width: 0%; background: var(--accent-color); transition: width 0.1s ease-out; }
+    .container {
+      max-width: 840px;
+      margin: 6rem auto;
+      background: #fff;
+      border: 10px double #333;
+      padding: 3rem;
+      box-shadow: 0 0 40px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    h1 {
+      font-family: 'Old Standard TT', serif;
+      font-size: 6rem;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+      cursor: pointer;
+    }
+    h1:hover { color: var(--accent-color); transform: scale(1.15) rotate(-2deg); transition: transform 0.3s ease, color 0.3s ease; }
+    h1::after {
+      content: '';
+      display: block;
+      width: 150px;
+      height: 8px;
+      background: var(--accent-color);
+      margin: 1rem auto;
+    }
+    table.metadata {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+    table.metadata th,
+    table.metadata td {
+      border: 6px solid #333;
+      padding: 1.2rem 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    table.metadata th { background: #e8dcd1; }
+    table.metadata tr:hover { background: rgba(111,24,38,0.2); transform: translateX(12px); transition: transform 0.2s; }
+
+    .flourish { border: none; border-top: 6px solid #333; margin: 3rem 0; position: relative; height: 32px; }
+    .flourish::after { content: '✾'; position: absolute; top: -16px; left: 50%; transform: translateX(-50%); color: var(--accent-color); font-size: 1.8rem; }
+
+    .article-body p {
+      text-align: justify;
+      margin-bottom: 2rem;
+      line-height: 2.2;
+      position: relative;
+      font-size: 1.3rem;
+      transition: background 0.3s ease, transform 0.3s ease;
+      border-left: 10px solid transparent;
+      padding-left: 2rem;
+    }
+    .article-body p:first-of-type::first-letter {
+      font-size: 8rem;
+      float: left;
+      line-height: 1;
+      padding-right: 1.5rem;
+      color: var(--accent-color);
+      font-family: 'Old Standard TT', serif;
+    }
+    .article-body p:hover {
+      background: rgba(111,24,38,0.15);
+      transform: translateX(20px);
+      border-left-color: var(--accent-color);
+    }
+
+    .share-buttons {
+      text-align: center;
+      margin-top: 4rem;
+      font-size: 1.2rem;
+      font-weight: 900;
+    }
+    .share-icon {
+      margin: 0 1.2rem;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 2.5rem;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .share-icon:hover {
+      transform: rotate(45deg) scale(1.8);
+      color: var(--accent-color);
+    }
+
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      will-change: transform, opacity;
+    }
+  </style>
 </head>
-<body style>
-  <div id="__next">
-    <main>…</main>
+<body>
+  <div id="progress-container"><div id="reading-progress"></div></div>
+  <div class="container">
+    <h1 id="sample-title">Observation Number 4</h1>
+    <table class="metadata" id="meta-table">
+      <tr><th>Titolo</th><td>Il Crepuscolo dell'Età Industriale</td></tr>
+      <tr><th>Data</th><td>15 marzo 1920</td></tr>
+      <tr><th>Autore</th><td>Gabriele Leonardi</td></tr>
+      <tr><th>Luogo</th><td>Torino</td></tr>
+    </table>
+    <hr class="flourish">
+    <div class="article-body">
+      <p>Al calar del sole sullo skyline fumante, le ciminiere delle fabbriche tracciavano scie di fumo come penne d'un gigantesco rapace notturno. Era il 15 marzo 1920, e la città di Torino si preparava al nuovo millennio con un misto di speranza e timore.</p>
+      <p>I lavoratori, stanchi ma risoluti, tornavano alle loro dimore tra vie acciottolate e lampioni a gas, mentre il crepuscolo dipingeva d'oro le facciate di pietra. Le ombre lunghe si allungavano sui marciapiedi, raccontando storie di progresso e sacrificio.</p>
+      <p>In questo crocevia d'innovazione e tradizione, nasceva la riflessione: quanto a lungo avrebbe retto l'impero d'acciaio prima di cedere alla forza dei nuovi motori e delle rivoluzioni sociali?</p>
+    </div>
+    <div class="share-buttons">
+      Condividi: <span class="share-icon">🔗</span><span class="share-icon">🐦</span><span class="share-icon">📘</span>
+    </div>
   </div>
-  <script id="__NEXT_DATA__" type="application/json" crossorigin>
-{"props":{"pageProps":{},"page":"/poor-charlies-almanack/[...slug]"},"query":{},"buildId":"jYffJ8kB4uRo0FygbPdqH","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}
+
+  <script>
+    // Reading progress calculation
+    const progressBar = document.getElementById('reading-progress');
+    window.addEventListener('scroll', () => {
+      const article = document.querySelector('.container');
+      const articleHeight = article.scrollHeight - window.innerHeight;
+      const scrollPos = window.scrollY;
+      const progress = Math.min((scrollPos / articleHeight) * 100, 100);
+      progressBar.style.width = progress + '%';
+    });
+
+    // Sparkles on metadata hover
+    const metaRows = document.querySelectorAll('#meta-table tr');
+    metaRows.forEach(row => {
+      row.addEventListener('mouseenter', e => {
+        for (let i = 0; i < 20; i++) {
+          const star = document.createElement('div');
+          star.className = 'star';
+          star.style.background = 'gold';
+          const size = Math.random() * 8 + 5;
+          star.style.width = size + 'px';
+          star.style.height = size + 'px';
+          star.style.left = e.clientX + (Math.random() - 0.5) * row.offsetWidth + 'px';
+          star.style.top = e.clientY + (Math.random() - 0.5) * row.offsetHeight + 'px';
+          document.body.appendChild(star);
+          const dx = (Math.random() - 0.5) * 200;
+          const dy = (Math.random() - 0.5) * 200;
+          star.animate([
+            { transform: 'translate(0,0) scale(1)', opacity: 1 },
+            { transform: `translate(${dx}px, ${dy}px) scale(0.2)`, opacity: 0 }
+          ], { duration: 1200 + Math.random()*600, easing: 'ease-out' });
+          setTimeout(() => star.remove(), 1800);
+        }
+      });
+    });
+
+    // Title hover trail
+    const sampleTitle = document.getElementById('sample-title');
+    sampleTitle.addEventListener('mousemove', e => {
+      for (let j = 0; j < 5; j++) {
+        const spark = document.createElement('div');
+        spark.className = 'star';
+        spark.style.background = '#333';
+        const size = Math.random() * 10 + 5;
+        spark.style.width = size + 'px';
+        spark.style.height = size + 'px';
+        spark.style.left = e.clientX + ((Math.random()-0.5)*100) + 'px';
+        spark.style.top = e.clientY + ((Math.random()-0.5)*100) + 'px';
+        document.body.appendChild(spark);
+        spark.animate([
+          { transform: 'translate(0,0) scale(1)', opacity: 1 },
+          { transform: `translate(${(Math.random()-0.5)*100}px, ${(Math.random()-0.5)*100}px) scale(0.1)`, opacity: 0 }
+        ], { duration: 900 + Math.random()*500, easing: 'ease-out' });
+        setTimeout(() => spark.remove(), 1200);
+      }
+    });
   </script>
-  <script src="https://plausible.io/js/script.js" async defer data-domain="stripe.press" data-nscript="afterInteractive"></script>
-  <script id="next-plausible-init" data-nscript="afterInteractive">
-    window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }
-  </script>
-  <next-route-announcer>
-    <p aria-live="assertive" id="__next-route-announcer__" role="alert" style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; top: 0px; width: 1px; white-space: nowrap; overflow-wrap: normal;">
-      Poor Charlie’s Almanack: The Essential Wit and Wisdom of Charles T. Munger
-    </p>
-  </next-route-announcer>
-  <script src="/_next/static/chunks/pages/poor-charlies-almanack/book-2680141ca83280fa.js"></script>
 </body>
 </html>
-```
