@@ -2,56 +2,268 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NeoBlog</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Élégance – Single Page Blog</title>
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0f172a;
-      color: #e2e8f0;
-      overflow-x: hidden;
+    /* Base reset & box-sizing */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    .glow {
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+
+    /* Colors & variables */
+    :root {
+      --color-bg: #faf8f2;
+      --color-paper: #f4efe7;
+      --color-text: #2c2a29;
+      --color-accent: #bfa67a;
+      --color-muted: #7a7365;
+      --font-base: 'Playfair Display', serif;
+      --font-sans: 'Helvetica Neue', sans-serif;
+      --transition: 0.3s ease;
+    }
+
+    body {
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-family: var(--font-base);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: min(90%, 1000px);
+      margin: auto;
+      padding: 2rem 0;
+    }
+
+    /* Header & Nav */
+    .site-header {
+      background: var(--color-paper);
+      padding: 1rem 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .site-nav {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .site-nav a {
+      position: relative;
+      text-decoration: none;
+      color: var(--color-text);
+      font-weight: bold;
+      transition: color var(--transition);
+    }
+    .site-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--color-accent);
+      transition: width var(--transition);
+    }
+    .site-nav a:hover,
+    .site-nav a.active {
+      color: var(--color-accent);
+    }
+    .site-nav a:hover::after,
+    .site-nav a.active::after {
+      width: 100%;
+    }
+
+    /* Sections */
+    section {
+      padding: 4rem 0;
+      scroll-margin-top: 80px;
+    }
+
+    /* Hero */
+    .hero-title {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--color-muted);
+      text-align: center;
+    }
+
+    /* Card component */
+    .card {
+      background: var(--color-paper);
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .card img {
+      width: 100%;
+      display: block;
+    }
+    .card-content {
+      padding: 1rem;
+    }
+    .card-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .card-text {
+      color: var(--color-muted);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+    }
+
+    /* Posts grid */
+    .posts-grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    /* About & Contact */
+    .about-text,
+    .contact-form {
+      max-width: 600px;
+      margin: auto;
+      font-family: var(--font-sans);
+      color: var(--color-text);
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid var(--color-muted);
+      border-radius: 0.25rem;
+      font-family: var(--font-sans);
+    }
+    .contact-form button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      background: var(--color-accent);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: opacity var(--transition);
+    }
+    .contact-form button:hover {
+      opacity: 0.85;
+    }
+
+    /* Footer */
+    .site-footer {
+      margin-top: auto;
+      padding: 2rem 0;
+      text-align: center;
+      color: var(--color-muted);
+      font-size: 0.9rem;
+      background: var(--color-paper);
     }
   </style>
 </head>
-<body class="p-6">
-  <header class="text-center py-10">
-    <h1 class="text-5xl font-extrabold bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text animate-pulse">NeoBlog</h1>
-    <p class="text-gray-400 mt-3 text-xl">Future-forward insights & tech musings</p>
+<body>
+
+  <header class="site-header">
+    <nav class="site-nav container">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#blog" class="nav-link">Blog</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
   </header>
 
-  <main class="grid md:grid-cols-3 gap-6">
-    <article class="bg-slate-800 p-6 rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300 ease-out">
-      <h2 class="text-2xl font-bold mb-2">The AI Renaissance</h2>
-      <p class="text-gray-400">Exploring how artificial intelligence is redefining creativity, productivity and decision-making in our society.</p>
-      <button class="mt-4 bg-gradient-to-r from-cyan-500 to-blue-500 px-4 py-2 rounded-xl text-white font-semibold hover:from-pink-500 hover:to-purple-500 transition-all">Read more</button>
-    </article>
+  <main class="container">
+    <!-- Home Section -->
+    <section id="home">
+      <h1 class="hero-title">Welcome to Élégance</h1>
+      <p class="hero-subtitle">A refined corner of luxury, style & timeless living.</p>
+    </section>
 
-    <article class="bg-slate-800 p-6 rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300 ease-out">
-      <h2 class="text-2xl font-bold mb-2">Web3: The Next Internet</h2>
-      <p class="text-gray-400">A closer look at decentralized applications, blockchain identity, and DAOs shaping the future of the web.</p>
-      <button class="mt-4 bg-gradient-to-r from-green-400 to-lime-500 px-4 py-2 rounded-xl text-white font-semibold hover:from-purple-500 hover:to-pink-500 transition-all">Read more</button>
-    </article>
+    <!-- Blog Section -->
+    <section id="blog">
+      <h2 class="hero-title">Blog</h2>
+      <div class="posts-grid">
+        <div class="card">
+          <img src="https://via.placeholder.com/600x300" alt="Craftsmanship Spotlight"/>
+          <div class="card-content">
+            <h3 class="card-title">Craftsmanship Spotlight: Cashmere</h3>
+            <p class="card-text">Inside the atelier where fiber becomes legacy.</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://via.placeholder.com/600x300" alt="Neutral Wardrobe"/>
+          <div class="card-content">
+            <h3 class="card-title">The Art of Neutral Wardrobe</h3>
+            <p class="card-text">How a capsule collection of creams and taupes speaks volumes in silence.</p>
+          </div>
+        </div>
+        <!-- Add more .card blocks as desired -->
+      </div>
+    </section>
 
-    <article class="bg-slate-800 p-6 rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300 ease-out">
-      <h2 class="text-2xl font-bold mb-2">Immersive UX</h2>
-      <p class="text-gray-400">Design trends for 2025 and beyond: AR/VR interfaces, AI-generated experiences, and ultra-minimalism.</p>
-      <button class="mt-4 bg-gradient-to-r from-yellow-400 to-red-500 px-4 py-2 rounded-xl text-white font-semibold hover:from-blue-500 hover:to-green-500 transition-all">Read more</button>
-    </article>
+    <!-- About Section -->
+    <section id="about">
+      <h2 class="hero-title">About Me</h2>
+      <div class="about-text">
+        <p>Hello, I’m [Your Name], curator of timeless style and connoisseur of the understated. With a passion for the finest materials—cashmere, silk, linen—I explore how old‑world craftsmanship intersects with modern living. Join me as we journey through ateliers, discover heritage brands, and cultivate a wardrobe built to last.</p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2 class="hero-title">Get in Touch</h2>
+      <form class="contact-form">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea rows="5" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
   </main>
 
-  <footer class="mt-16 text-center text-gray-500">
-    <p>&copy; 2025 NeoBlog. Made at the apex of web innovation.</p>
+  <footer class="site-footer">
+    &copy; 2025 Élégance. All rights reserved.
   </footer>
 
   <script>
-    gsap.from("header h1", { duration: 1.5, y: -50, opacity: 0, ease: "power4.out" });
-    gsap.from("main article", { duration: 1.2, y: 20, opacity: 0, stagger: 0.3, ease: "power2.out" });
+    // Smooth scroll & active-link highlighting
+    const links = document.querySelectorAll('.nav-link');
+    const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href')));
+
+    links.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(link.getAttribute('href'))
+          .scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY + window.innerHeight / 2;
+      sections.forEach((sec, i) => {
+        if (sec.offsetTop <= y && sec.offsetTop + sec.offsetHeight > y) {
+          links.forEach(l => l.classList.remove('active'));
+          links[i].classList.add('active');
+        }
+      });
+    });
   </script>
 </body>
 </html>
