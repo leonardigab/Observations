@@ -1,382 +1,285 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Élégance – Single Page Blog</title>
-  <link rel="manifest" href="manifest.json">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Observations /a capo/ by Gabriele Leonardi</title>
+
+  <!-- Font: Cardinal Fruit Medium -->
+  <link href="https://db.onlinewebfonts.com/c/2bfe809f5a433474ec388de3ccb69e73?family=Cardinal+Fruit+Medium" rel="stylesheet">
 
   <style>
-    /* reset & variables */
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     :root {
-      --color-bg: #faf8f2;
-      --color-paper: #f4efe7;
-      --color-text: #2c2a29;
-      --color-accent: #d4af37;
-      --color-muted: #7a7365;
-      --fw-heading: 800;
-      --fs-hero: 4rem;
-      --underline-thick: 3px;
-      --shadow-strong: 0 8px 25px rgba(0,0,0,0.15);
-      --border-thick: 2px;
-      --font-base: 'Playfair Display', serif;
-      --font-sans: 'Helvetica Neue', sans-serif;
-      --transition: 0.3s ease;
+      --primary: #333;
+      --accent: #b02e26;
+      --bg: #fff;
+      --light: #f4f4f4;
+      --transition: 0.3s;
     }
 
-    /* base layout */
+    /* Base */
     body {
-      background: var(--color-bg);
-      color: var(--color-text);
-      font-family: var(--font-base);
+      font-family: 'Cardinal Fruit Medium', serif;
+      background: var(--light);
+      color: var(--primary);
+      margin: 0;
       line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      filter: contrast(1.1);
     }
+
     .container {
-      width: min(90%, 1000px);
+      max-width: 800px;
       margin: auto;
-      padding: 2rem 0;
+      padding: 2rem;
+      background: var(--bg);
     }
 
-    /* scroll progress */
-    #progress-bar {
-      position: fixed;
-      top: 0; left: 0;
-      height: 6px;
-      background: var(--color-accent);
-      width: 0;
-      z-index: 9999;
+    /* Typography accents */
+    p:first-of-type::first-letter {
+      float: left;
+      font-size: 4rem;
+      line-height: 1;
+      margin-right: 0.1rem;
+      color: var(--accent);
     }
 
-    /* custom cursor */
-    #cursor {
-      position: fixed;
-      top: 0; left: 0;
-      width: 16px; height: 16px;
-      border: 2px solid var(--color-accent);
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      transition: width .2s ease, height .2s ease;
-      z-index: 9999;
-    }
-    #cursor.active {
-      width: 32px; height: 32px;
+    h1 {
+      font-size: 3.5rem;
+      margin: 0 0 0.5rem;
     }
 
-    /* header + nav */
-    .site-header {
-      background: var(--color-paper);
-      padding: 1rem 0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      position: sticky;
-      top: 0; z-index: 10;
+    h2 {
+      font-size: 2.5rem;
+      margin: 2rem 0 1rem;
     }
-    .site-nav {
+
+    h3 {
+      font-size: 1.8rem;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    /* Navigation */
+    header {
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .byline {
+      font-style: italic;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
       display: flex;
-      gap: 2rem;
-      justify-content: center;
+      gap: 1rem;
     }
-    .site-nav a {
-      position: relative;
+
+    nav a {
       text-decoration: none;
-      color: var(--color-text);
-      font-weight: var(--fw-heading);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      color: var(--primary);
       transition: color var(--transition);
     }
-    .site-nav a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0;
-      width: 0; height: var(--underline-thick);
-      background: var(--color-accent);
-      transition: width var(--transition);
-    }
-    .site-nav a:hover,
-    .site-nav a.active {
-      color: var(--color-accent);
-    }
-    .site-nav a:hover::after,
-    .site-nav a.active::after {
-      width: 100%;
+
+    nav a:hover {
+      color: var(--accent);
+      text-decoration: underline;
     }
 
-    /* parallax hero */
-    .parallax {
-      position: relative;
-      overflow: hidden;
-      height: 80vh;
-    }
-    .parallax .layer {
-      position: absolute; top:0; left:0;
-      width:100%; height:100%;
-      background-size: cover;
-      background-position: center;
-      will-change: transform;
-    }
-    .parallax .content {
-      position: relative; z-index:10;
-      text-align:center;
-      top:50%; transform:translateY(-50%);
+    /* Article elements */
+    blockquote {
+      font-style: italic;
+      border-left: 4px solid var(--accent);
+      margin: 2rem 0;
+      padding-left: 1rem;
+      color: #555;
     }
 
-    /* sections */
-    section {
-      padding: 4rem 0;
-      scroll-margin-top: 80px;
-    }
-    .hero-title {
-      font-size: var(--fs-hero);
-      font-weight: var(--fw-heading);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-    .hero-subtitle {
-      font-size: 1.25rem;
-      color: var(--color-muted);
+    figure {
+      margin: 2rem 0;
       text-align: center;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
     }
 
-    /* cards with 3D tilt */
-    .posts-grid {
-      display: grid;
-      gap: 2rem;
-      grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+    figcaption {
+      font-size: 0.9rem;
+      color: #777;
     }
-    .card {
-      perspective: 1000px;
-      transition: transform .2s ease, box-shadow .2s ease;
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
     }
-    .card-inner {
-      background: var(--color-paper);
-      border: var(--border-thick) solid var(--color-accent);
-      border-radius: 0.5rem;
-      overflow: hidden;
-      transform: rotateX(0) rotateY(0);
-      will-change: transform;
-      box-shadow: var(--shadow-strong);
-      transition: box-shadow .2s ease;
+
+    ul, ol {
+      margin: 1rem 0 1rem 1.5rem;
     }
-    .card-inner:hover {
-      box-shadow: 0 16px 40px rgba(0,0,0,0.15);
-    }
-    .card img {
-      width: 100%; display: block;
-    }
-    .card-content {
+
+    pre code {
+      background: var(--light);
       padding: 1rem;
-    }
-    .card-title {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      font-family: var(--font-base);
-    }
-    .card-text {
-      color: var(--color-muted);
-      font-family: var(--font-sans);
-      font-size: 0.95rem;
-    }
-
-    /* about & contact */
-    .about-text,
-    .contact-form {
-      max-width: 600px;
-      margin: auto;
-      font-family: var(--font-sans);
-      color: var(--color-text);
-    }
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
-      border: 1px solid var(--color-muted);
-      border-radius: 0.25rem;
-      font-family: var(--font-sans);
-    }
-    .contact-form button {
-      padding: 0.75rem 1.5rem;
-      border: none;
-      background: var(--color-accent);
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: opacity var(--transition);
-    }
-    .contact-form button:hover {
-      opacity: 0.85;
-    }
-
-    /* back-to-top */
-    #back-to-top {
-      position: fixed;
-      bottom: 2rem; right: 2rem;
-      padding: 1rem;
-      border: none;
-      background: var(--color-accent);
-      color: #fff;
-      font-size: 1.25rem;
-      cursor: pointer;
-      display: none;
-      z-index: 1000;
-      border-radius: 0;
-    }
-    #back-to-top.show {
       display: block;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    /* Interactive elements */
+    a {
+      color: var(--accent);
+      transition: color var(--transition);
+    }
+    a:hover { color: #8f261f; }
+
+    .subscribe {
+      margin: 2rem 0;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .subscribe input[type="email"] {
+      flex: 1;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 0.3rem;
+      transition: border-color var(--transition);
+    }
+
+    .subscribe input:focus { border-color: var(--accent); outline: none; }
+
+    .subscribe button {
+      padding: 0.5rem 1rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 0.3rem;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+
+    .subscribe button:hover { background: #8f261f; }
+
+    .share-buttons {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .share-buttons a {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: #eee;
+      border-radius: 0.5rem;
+      transition: background var(--transition);
+    }
+
+    .share-buttons a:hover { background: #ddd; }
+
+    .tag {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.2rem 0.5rem;
+      margin-right: 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.8rem;
+      transition: background var(--transition);
+    }
+
+    .tag:hover { background: #8f261f; }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: rgba(0,0,0,0.1);
+      margin: 3rem 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .container { padding: 1rem; }
+      h1 { font-size: 2.5rem; }
     }
   </style>
 </head>
 <body>
-  <div id="progress-bar"></div>
-  <div id="cursor"></div>
-
-  <header class="site-header">
-    <nav class="site-nav container">
-      <a href="#home" class="nav-link active">Home</a>
-      <a href="#blog" class="nav-link">Blog</a>
-      <a href="#about" class="nav-link">About</a>
-      <a href="#contact" class="nav-link">Contact</a>
-    </nav>
+  <header>
+    <div class="container">
+      <h1>Scoperte e Riflessioni</h1>
+      <p class="byline">di Gabriele Leonardi – <time datetime="2025-07-28">28 luglio 2025</time></p>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#articolo">Articolo</a></li>
+          <li><a href="#contatti">Contatti</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main class="container">
-    <!-- Parallax Hero -->
-    <section id="home" class="parallax">
-      <div class="layer" data-speed="0.2" style="background-image:url('https://via.placeholder.com/1200x800/efe7df');"></div>
-      <div class="layer" data-speed="0.5" style="background-image:url('https://via.placeholder.com/1200x800/ddd3c8');"></div>
-      <div class="layer" data-speed="0.8" style="background-image:url('https://via.placeholder.com/1200x800/cbbba9');"></div>
-      <div class="content">
-        <h1 class="hero-title">Welcome to Élégance</h1>
-        <p class="hero-subtitle">A refined corner of luxury, style & timeless living.</p>
-      </div>
-    </section>
+  <main>
+    <div class="container">
+      <article id="articolo">
+        <p>Il design tipografico è un'arte che fonde forma e contenuto in un abbraccio visivo. In questo articolo esploreremo come la tipografia possa diventare protagonista interattiva e organica di un'esperienza di lettura unica.</p>
 
-    <!-- Blog -->
-    <section id="blog">
-      <h2 class="hero-title">Blog</h2>
-      <div class="posts-grid">
-        <div class="card">
-          <div class="card-inner">
-            <img src="https://via.placeholder.com/600x300" alt="Craftsmanship Spotlight"/>
-            <div class="card-content">
-              <h3 class="card-title">Craftsmanship Spotlight: Cashmere</h3>
-              <p class="card-text">Inside the atelier where fiber becomes legacy.</p>
-            </div>
-          </div>
+        <h2>1. L'essenza della tipografia</h2>
+        <p>Ogni carattere racchiude personalità. Scegliendo "Cardinal Fruit Medium" diamo al testo una voce calda e distintiva. Le varianti di peso e le linee sottili creano un ritmo visivo che guida il lettore.</p>
+
+        <figure>
+          <img src="https://via.placeholder.com/700x300" alt="Esempio di tipografia">
+          <figcaption>Esempio di gerarchie tipografiche a confronto.</figcaption>
+        </figure>
+
+        <h2>2. Elementi interattivi</h2>
+        <p>La lettura diventa coinvolgente quando il testo reagisce al gesto. Prova a passare il cursore sui link o sui pulsanti: un piccolo cambiamento di colore rafforza l'attenzione.</p>
+
+        <h3>Punti chiave</h3>
+        <ul>
+          <li>Transizioni morbide per collegamenti e pulsanti.</li>
+          <li>Drop cap per enfatizzare l'inizio di un paragrafo.</li>
+          <li>Blockquote stilizzate per citazioni impattanti.</li>
+        </ul>
+
+        <blockquote>"Il carattere non è solo vestito del testo, ma anima del contenuto." – Designer anonimo</blockquote>
+
+        <h2>3. Struttura e gerarchia</h2>
+        <p>La divisione in sezioni chiare, titoli ben bilanciati e paragrafi concisi garantisce un flusso di lettura naturale:</p>
+        <ol>
+          <li>Titoli preponderanti.</li>
+          <li>Sottotitoli chiari.</li>
+          <li>Testo narrativo compatto.</li>
+        </ol>
+
+        <hr>
+
+        <h2>4. Invito all'azione</h2>
+        <p>Vuoi più risorse sulla tipografia? Iscriviti alla nostra newsletter:</p>
+        <form class="subscribe" id="contatti">
+          <input type="email" placeholder="La tua email" required>
+          <button type="submit">Iscriviti</button>
+        </form>
+
+        <div class="share-buttons">
+          <a href="#"><span>🔗</span> Condividi</a>
+          <a href="#"><span>🐦</span> Tweet</a>
+          <a href="#"><span>👍</span> Like</a>
         </div>
-        <div class="card">
-          <div class="card-inner">
-            <img src="https://via.placeholder.com/600x300" alt="Neutral Wardrobe"/>
-            <div class="card-content">
-              <h3 class="card-title">The Art of Neutral Wardrobe</h3>
-              <p class="card-text">How a capsule collection of creams and taupes speaks volumes in silence.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- About -->
-    <section id="about">
-      <h2 class="hero-title">About Me</h2>
-      <div class="about-text">
-        <p>Hello, I’m [Your Name], curator of timeless style and connoisseur of the understated. With a passion for the finest materials—cashmere, silk, linen—I explore how old‑world craftsmanship intersects with modern living.</p>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact">
-      <h2 class="hero-title">Get in Touch</h2>
-      <form class="contact-form">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea rows="5" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </section>
+        <h3>Tag</h3>
+        <span class="tag">Tipografia</span>
+        <span class="tag">Design</span>
+        <span class="tag">Interattivo</span>
+      </article>
+    </div>
   </main>
 
-  <button id="back-to-top" aria-label="Back to top">↑</button>
-
-  <!-- GSAP for scroll animations -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
-  <script>
-    // Smooth scroll & active-nav
-    const links = document.querySelectorAll('.nav-link');
-    const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href')));
-    links.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-      });
-    });
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY + window.innerHeight / 2;
-      sections.forEach((sec, i) => {
-        if (sec.offsetTop <= y && sec.offsetTop + sec.offsetHeight > y) {
-          links.forEach(l => l.classList.remove('active'));
-          links[i].classList.add('active');
-        }
-      });
-      // progress bar
-      const max = document.body.scrollHeight - window.innerHeight;
-      document.getElementById('progress-bar').style.width = (window.scrollY / max * 100) + '%';
-      // back-to-top
-      document.getElementById('back-to-top').classList.toggle('show', window.scrollY > 300);
-    });
-
-    // Parallax
-    window.addEventListener('scroll', () => {
-      const top = window.scrollY;
-      document.querySelectorAll('.parallax .layer').forEach(layer => {
-        const speed = parseFloat(layer.dataset.speed);
-        layer.style.transform = `translateY(${top * speed}px)`;
-      });
-    });
-
-    // Card tilt
-    document.querySelectorAll('.card').forEach(card => {
-      const inner = card.querySelector('.card-inner');
-      card.addEventListener('pointermove', e => {
-        const { width, height, left, top } = card.getBoundingClientRect();
-        const x = (e.clientX - left) / width - 0.5;
-        const y = (e.clientY - top) / height - 0.5;
-        inner.style.transform = `rotateX(${+y * 15}deg) rotateY(${-x * 15}deg)`;
-      });
-      card.addEventListener('pointerleave', () => {
-        inner.style.transform = 'rotateX(0) rotateY(0)';
-      });
-    });
-
-    // GSAP scroll-trigger
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.timeline({ scrollTrigger:{ trigger:"#blog", start:"top 80%" } })
-      .from("#blog .card", { opacity:0, y:50, stagger:0.2, duration:1, ease:"power3.out" });
-
-    // Custom cursor
-    const cursor = document.getElementById('cursor');
-    document.addEventListener('pointermove', e => {
-      cursor.style.top = e.clientY + 'px';
-      cursor.style.left = e.clientX + 'px';
-    });
-    document.querySelectorAll('a,button,.card').forEach(el => {
-      el.addEventListener('pointerenter', () => cursor.classList.add('active'));
-      el.addEventListener('pointerleave', () => cursor.classList.remove('active'));
-    });
-
-    // Register Service Worker for PWA
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js');
-    }
-  </script>
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Gabriele Leonardi. Tutti i diritti riservati.</p>
+    </div>
+  </footer>
 </body>
 </html>
