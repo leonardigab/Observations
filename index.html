@@ -1,9 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Benvenuto!</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeoBlog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #0f172a;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+    .glow {
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+    }
+  </style>
 </head>
-<body>
-  <h1>Ciao dal mio sito su GitHub Pages!</h1>
+<body class="p-6">
+  <header class="text-center py-10">
+    <h1 class="text-5xl font-extrabold bg-gradient-to-r from-pink-500 to-purple-500 text-transparent bg-clip-text animate-pulse">NeoBlog</h1>
+    <p class="text-gray-400 mt-3 text-xl">Future-forward insights & tech musings</p>
+  </header>
+
+  <main class="grid md:grid-cols-3 gap-6">
+    <article class="bg-slate-800 p-6 rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300 ease-out">
+      <h2 class="text-2xl font-bold mb-2">The AI Renaissance</h2>
+      <p class="text-gray-400">Exploring how artificial intelligence is redefining creativity, productivity and decision-making in our society.</p>
+      <button class="mt-4 bg-gradient-to-r from-cyan-500 to-blue-500 px-4 py-2 rounded-xl text-white font-semibold hover:from-pink-500 hover:to-purple-500 transition-all">Read more</button>
+    </article>
+
+    <article class="bg-slate-800 p-6 rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300 ease-out">
+      <h2 class="text-2xl font-bold mb-2">Web3: The Next Internet</h2>
+      <p class="text-gray-400">A closer look at decentralized applications, blockchain identity, and DAOs shaping the future of the web.</p>
+      <button class="mt-4 bg-gradient-to-r from-green-400 to-lime-500 px-4 py-2 rounded-xl text-white font-semibold hover:from-purple-500 hover:to-pink-500 transition-all">Read more</button>
+    </article>
+
+    <article class="bg-slate-800 p-6 rounded-2xl shadow-xl hover:scale-105 transition-transform duration-300 ease-out">
+      <h2 class="text-2xl font-bold mb-2">Immersive UX</h2>
+      <p class="text-gray-400">Design trends for 2025 and beyond: AR/VR interfaces, AI-generated experiences, and ultra-minimalism.</p>
+      <button class="mt-4 bg-gradient-to-r from-yellow-400 to-red-500 px-4 py-2 rounded-xl text-white font-semibold hover:from-blue-500 hover:to-green-500 transition-all">Read more</button>
+    </article>
+  </main>
+
+  <footer class="mt-16 text-center text-gray-500">
+    <p>&copy; 2025 NeoBlog. Made at the apex of web innovation.</p>
+  </footer>
+
+  <script>
+    gsap.from("header h1", { duration: 1.5, y: -50, opacity: 0, ease: "power4.out" });
+    gsap.from("main article", { duration: 1.2, y: 20, opacity: 0, stagger: 0.3, ease: "power2.out" });
+  </script>
 </body>
 </html>
