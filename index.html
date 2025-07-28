@@ -1,285 +1,49 @@
+```html
 <!DOCTYPE html>
-<html lang="it">
+<html style>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Observations /a capo/ by Gabriele Leonardi</title>
-
-  <!-- Font: Cardinal Fruit Medium -->
-  <link href="https://db.onlinewebfonts.com/c/2bfe809f5a433474ec388de3ccb69e73?family=Cardinal+Fruit+Medium" rel="stylesheet">
-
-  <style>
-    :root {
-      --primary: #333;
-      --accent: #b02e26;
-      --bg: #fff;
-      --light: #f4f4f4;
-      --transition: 0.3s;
-    }
-
-    /* Base */
-    body {
-      font-family: 'Cardinal Fruit Medium', serif;
-      background: var(--light);
-      color: var(--primary);
-      margin: 0;
-      line-height: 1.6;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 2rem;
-      background: var(--bg);
-    }
-
-    /* Typography accents */
-    p:first-of-type::first-letter {
-      float: left;
-      font-size: 4rem;
-      line-height: 1;
-      margin-right: 0.1rem;
-      color: var(--accent);
-    }
-
-    h1 {
-      font-size: 3.5rem;
-      margin: 0 0 0.5rem;
-    }
-
-    h2 {
-      font-size: 2.5rem;
-      margin: 2rem 0 1rem;
-    }
-
-    h3 {
-      font-size: 1.8rem;
-      margin: 1.5rem 0 0.5rem;
-    }
-
-    /* Navigation */
-    header {
-      border-bottom: 1px solid rgba(0,0,0,0.1);
-      margin-bottom: 2rem;
-    }
-
-    .byline {
-      font-style: italic;
-      color: #666;
-      margin-bottom: 1rem;
-    }
-
-    nav ul {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      gap: 1rem;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: var(--primary);
-      transition: color var(--transition);
-    }
-
-    nav a:hover {
-      color: var(--accent);
-      text-decoration: underline;
-    }
-
-    /* Article elements */
-    blockquote {
-      font-style: italic;
-      border-left: 4px solid var(--accent);
-      margin: 2rem 0;
-      padding-left: 1rem;
-      color: #555;
-    }
-
-    figure {
-      margin: 2rem 0;
-      text-align: center;
-      opacity: 0;
-      animation: fadeIn 1s forwards;
-    }
-
-    figcaption {
-      font-size: 0.9rem;
-      color: #777;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    ul, ol {
-      margin: 1rem 0 1rem 1.5rem;
-    }
-
-    pre code {
-      background: var(--light);
-      padding: 1rem;
-      display: block;
-      border-radius: 0.5rem;
-      overflow-x: auto;
-      margin: 1rem 0;
-    }
-
-    /* Interactive elements */
-    a {
-      color: var(--accent);
-      transition: color var(--transition);
-    }
-    a:hover { color: #8f261f; }
-
-    .subscribe {
-      margin: 2rem 0;
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    .subscribe input[type="email"] {
-      flex: 1;
-      padding: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 0.3rem;
-      transition: border-color var(--transition);
-    }
-
-    .subscribe input:focus { border-color: var(--accent); outline: none; }
-
-    .subscribe button {
-      padding: 0.5rem 1rem;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: 0.3rem;
-      cursor: pointer;
-      transition: background var(--transition);
-    }
-
-    .subscribe button:hover { background: #8f261f; }
-
-    .share-buttons {
-      margin-top: 2rem;
-      display: flex;
-      gap: 1rem;
-    }
-
-    .share-buttons a {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: #eee;
-      border-radius: 0.5rem;
-      transition: background var(--transition);
-    }
-
-    .share-buttons a:hover { background: #ddd; }
-
-    .tag {
-      display: inline-block;
-      background: var(--accent);
-      color: #fff;
-      padding: 0.2rem 0.5rem;
-      margin-right: 0.5rem;
-      border-radius: 0.25rem;
-      font-size: 0.8rem;
-      transition: background var(--transition);
-    }
-
-    .tag:hover { background: #8f261f; }
-
-    hr {
-      border: 0;
-      height: 1px;
-      background: rgba(0,0,0,0.1);
-      margin: 3rem 0;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      .container { padding: 1rem; }
-      h1 { font-size: 2.5rem; }
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Poor Charlie’s Almanack: The Essential Wit and Wisdom of Charles T. Munger</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta property="og:title" content="Poor Charlie’s Almanack: The Essential Wit and Wisdom of Charles T. Munger">
+  <meta property="og:description" content="Experience the wit and wisdom of Charles T. Munger online, for free. Originally published in 2005, this compilation of 11 talks by the legendary Berkshire Hathaway vice‑chairman has become a touchstone for a generation of investors and entrepreneurs. It is an essential volume for any reader seeking to go to bed a little wiser than when they woke up.">
+  <meta property="og:image" name="og:image" content="https://images.ctfassets.net/fzn2n1nzq965/60jqxiSni0VRrzKrVirQ5s/4024e79fc2c2b205ca0e97317f2b1b85/pca_social_card_2x.jpg">
+  <meta name="image" property="og:image" content="https://images.ctfassets.net/fzn2n1nzq965/60jqxiSni0VRrzKrVirQ5s/4024e79fc2c2b205ca0e97317f2b1b85/pca_social_card_2x.jpg">
+  <meta name="description" property="og:description" content="Experience the wit and wisdom of Charles T. Munger online, for free. Originally published in 2005, this compilation of 11 talks by the legendary Berkshire Hathaway vice‑chairman has become a touchstone for a generation of investors and entrepreneurs. It is an essential volume for any reader seeking to go to bed a little wiser than when they woke up.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@stripepress">
+  <meta name="twitter:creator" content="@stripepress">
+  <meta name="twitter:title" content="Poor Charlie’s Almanack: The Essential Wit and Wisdom of Charles T. Munger">
+  <meta name="twitter:description" content="Experience the wit and wisdom of Charles T. Munger online, for free. Originally published in 2005, this compilation of 11 talks by the legendary Berkshire Hathaway vice‑chairman has become a touchstone for a generation of investors and entrepreneurs. It is an essential volume for any reader seeking to go to bed a little wiser than when they woke up.">
+  <meta name="twitter:image" content="https://images.ctfassets.net/fzn2n1nzq965/60jqxiSni0VRrzKrVirQ5s/4024e79fc2c2b205ca0e97317f2b1b85/pca_social_card_2x.jpg">
+  <link rel="shortcut icon" href="/images/favicon.ico">
+  <link rel="preload" href="/fonts/cardinalfruitweb-medium.woff2" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="/fonts/cardinalfruitweb-regular.woff2" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="/fonts/cardinalfruitweb-italic.woff2" as="font" type="font/woff" crossorigin>
+  <script src="/_next/static/jYffJ8kB4uRo0FygbPdqH/_buildManifest.js" defer crossorigin></script>
+  <script src="/_next/static/jYffJ8kB4uRo0FygbPdqH/_ssgManifest.js" defer crossorigin></script>
+  <style data-styled="active" data-styled-version="5.3.11"></style>
+  <link as="script" rel="prefetch" href="/_next/static/chunks/pages/poor-charlies-almanack/book-2680141ca83280fa.js">
 </head>
-<body>
-  <header>
-    <div class="container">
-      <h1>Scoperte e Riflessioni</h1>
-      <p class="byline">di Gabriele Leonardi – <time datetime="2025-07-28">28 luglio 2025</time></p>
-      <nav>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#articolo">Articolo</a></li>
-          <li><a href="#contatti">Contatti</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <div class="container">
-      <article id="articolo">
-        <p>Il design tipografico è un'arte che fonde forma e contenuto in un abbraccio visivo. In questo articolo esploreremo come la tipografia possa diventare protagonista interattiva e organica di un'esperienza di lettura unica.</p>
-
-        <h2>1. L'essenza della tipografia</h2>
-        <p>Ogni carattere racchiude personalità. Scegliendo "Cardinal Fruit Medium" diamo al testo una voce calda e distintiva. Le varianti di peso e le linee sottili creano un ritmo visivo che guida il lettore.</p>
-
-        <figure>
-          <img src="https://via.placeholder.com/700x300" alt="Esempio di tipografia">
-          <figcaption>Esempio di gerarchie tipografiche a confronto.</figcaption>
-        </figure>
-
-        <h2>2. Elementi interattivi</h2>
-        <p>La lettura diventa coinvolgente quando il testo reagisce al gesto. Prova a passare il cursore sui link o sui pulsanti: un piccolo cambiamento di colore rafforza l'attenzione.</p>
-
-        <h3>Punti chiave</h3>
-        <ul>
-          <li>Transizioni morbide per collegamenti e pulsanti.</li>
-          <li>Drop cap per enfatizzare l'inizio di un paragrafo.</li>
-          <li>Blockquote stilizzate per citazioni impattanti.</li>
-        </ul>
-
-        <blockquote>"Il carattere non è solo vestito del testo, ma anima del contenuto." – Designer anonimo</blockquote>
-
-        <h2>3. Struttura e gerarchia</h2>
-        <p>La divisione in sezioni chiare, titoli ben bilanciati e paragrafi concisi garantisce un flusso di lettura naturale:</p>
-        <ol>
-          <li>Titoli preponderanti.</li>
-          <li>Sottotitoli chiari.</li>
-          <li>Testo narrativo compatto.</li>
-        </ol>
-
-        <hr>
-
-        <h2>4. Invito all'azione</h2>
-        <p>Vuoi più risorse sulla tipografia? Iscriviti alla nostra newsletter:</p>
-        <form class="subscribe" id="contatti">
-          <input type="email" placeholder="La tua email" required>
-          <button type="submit">Iscriviti</button>
-        </form>
-
-        <div class="share-buttons">
-          <a href="#"><span>🔗</span> Condividi</a>
-          <a href="#"><span>🐦</span> Tweet</a>
-          <a href="#"><span>👍</span> Like</a>
-        </div>
-
-        <h3>Tag</h3>
-        <span class="tag">Tipografia</span>
-        <span class="tag">Design</span>
-        <span class="tag">Interattivo</span>
-      </article>
-    </div>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Gabriele Leonardi. Tutti i diritti riservati.</p>
-    </div>
-  </footer>
+<body style>
+  <div id="__next">
+    <main>…</main>
+  </div>
+  <script id="__NEXT_DATA__" type="application/json" crossorigin>
+{"props":{"pageProps":{},"page":"/poor-charlies-almanack/[...slug]"},"query":{},"buildId":"jYffJ8kB4uRo0FygbPdqH","nextExport":true,"autoExport":true,"isFallback":false,"scriptLoader":[]}
+  </script>
+  <script src="https://plausible.io/js/script.js" async defer data-domain="stripe.press" data-nscript="afterInteractive"></script>
+  <script id="next-plausible-init" data-nscript="afterInteractive">
+    window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }
+  </script>
+  <next-route-announcer>
+    <p aria-live="assertive" id="__next-route-announcer__" role="alert" style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; top: 0px; width: 1px; white-space: nowrap; overflow-wrap: normal;">
+      Poor Charlie’s Almanack: The Essential Wit and Wisdom of Charles T. Munger
+    </p>
+  </next-route-announcer>
+  <script src="/_next/static/chunks/pages/poor-charlies-almanack/book-2680141ca83280fa.js"></script>
 </body>
 </html>
+```
